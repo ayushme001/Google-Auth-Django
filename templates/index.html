@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="{% static 'js/main.js' %}"></script>
+    <title>Google Login</title>
+</head>
+<body>
+<div>
+    <div>
+        {% if not status %}
+            <a href="/gmailAuthenticate" onclick="gmailAuthenticate()" title="Google">Google</a>
+        {% else %}
+            <p>Your are verified</p>
+            <br>
+            {{ people_document }}
+            <br>
+            <br>
+            <a href="/logout" >logout</a>
+        {% endif %}
+{#        {{ people_document }}#}
+
+    <br>
+    </div>
+
+</div>
+<script>
+    var number = {{ people_document|escapejs }};
+    document.getElementById("myText").innerHTML = number;
+    //document.write(number)
+    var name = number['displayName'];
+    var email = number['emails']['value'];
+    document.getElementById("name").innerHTML = name;
+    document.getElementById("email").innerHTML = email;
+    var email = number['emails']['value'];
+
+</script>
+</body>
+</html>
